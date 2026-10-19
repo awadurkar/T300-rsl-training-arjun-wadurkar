@@ -1,4 +1,4 @@
-import { useActionState } from 'react'
+import { useActionState, useEffect } from 'react'
 import { useFormStatus } from 'react-dom'
 import { useUser } from '../context/UserContext'
 
@@ -14,7 +14,7 @@ function SubmitButton() {
   )
 }
 
-export default function RegistrationForm() {
+export default function RegistrationForm({ onRegistered }) {
   const { setUser } = useUser()
 
   async function registerAction(_previousState, formData) {
@@ -42,42 +42,73 @@ export default function RegistrationForm() {
 
   const [state, formAction] = useActionState(registerAction, initialState)
 
+  useEffect(() => {
+    if (state.success) {
+      onRegistered()
+    }
+  }, [onRegistered, state.success])
+
   return (
-    <section aria-labelledby="registration-heading">
-      <h2 id="registration-heading">Register to shop</h2>
+    <section className="registration-section" aria-labelledby="registration-heading">
+      <div className="registration-card">
+        <div className="registration-intro">
+          <span className="registration-kicker">Create your account</span>
+          <h2 id="registration-heading">Register to shop</h2>
+          <p>Register to view product details and start shopping.</p>
+        </div>
 
-      <form action={formAction}>
-        <label>
-          Name
-          <input name="name" autoComplete="name" required />
-        </label>
+        <form className="registration-form" action={formAction}>
+          <label>
+            <span>Name</span>
+            <input
+              name="name"
+              autoComplete="name"
+              placeholder="Your name"
+              required
+            />
+          </label>
 
-        <label>
-          Email
-          <input
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-          />
-        </label>
+          <label>
+            <span>Email</span>
+            <input
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="you@example.com"
+              required
+            />
+          </label>
 
-        <label>
-          Password
-          <input
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            minLength={8}
-            required
-          />
-        </label>
+          <label>
+            <span>Password</span>
+            <input
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              placeholder="At least 8 characters"
+              minLength={8}
+              required
+            />
+            <span className="field-hint">Use at least 8 characters.</span>
+          </label>
 
-        {state.error && <p role="alert">{state.error}</p>}
-        {state.success && <p role="status">{state.success}</p>}
+          {state.error && (
+            <p className="registration-message registration-error" role="alert">
+              {state.error}
+            </p>
+          )}
+          {state.success && (
+            <p className="registration-message registration-success" role="status">
+              {state.success}
+            </p>
+          )}
 
-        <SubmitButton />
-      </form>
+          <SubmitButton />
+          <p className="registration-note">
+            This demo keeps your name and email for this session only.
+          </p>
+        </form>
+      </div>
     </section>
   )
 }

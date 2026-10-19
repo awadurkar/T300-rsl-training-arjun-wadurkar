@@ -1,50 +1,43 @@
-import { useOptimistic, useState, useTransition } from 'react'
+import { useState, useTransition } from 'react'
+import { useCart } from '../context/CartContext'
 
 export default function AddToCartButton({ product }) {
-  const [cartCount, setCartCount] = useState(0)
-  const [optimisticCount, addOptimistic] = useOptimistic(
-    cartCount,
-    (currentCount, amount) => currentCount + amount,
-  )
   const [isPending, startTransition] = useTransition()
   const [shouldFail, setShouldFail] = useState(false)
   const [error, setError] = useState('')
+  const { addToCart } = useCart()
 
   function handleAddToCart() {
     setError('')
 
     startTransition(async () => {
-      addOptimistic(1)
+      const succeeded = await addToCart(product, shouldFail)
 
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      if (shouldFail) {
+      if (!succeeded) {
         setError('The request failed. Your cart was not changed.')
-        return
       }
-
-      setCartCount((count) => count + 1)
     })
   }
 
   return (
     <div>
-      <p aria-live="polite">Cart: {optimisticCount}</p>
-
       <button type="button" onClick={handleAddToCart} disabled={isPending}>
-        {isPending ? 'Adding…' : `Add ${product.title} to cart`}
+        {isPending ? 'Adding…' : `Add to cart`}
       </button>
 
-      <label>
+      <div className="simulate-failure">
+        <label htmlFor={`simulate-failure-${product.id}`}>
+          Simulate API failure
+        </label>
         <input
+          id={`simulate-failure-${product.id}`}
           type="checkbox"
           checked={shouldFail}
           onChange={(event) => setShouldFail(event.target.checked)}
         />
-        Simulate API failure
-      </label>
+      </div>
 
-      {error && <p role="alert">{error}</p>}
+      {error && <p className="simulate-failure-text" role="alert">{error}</p>}
     </div>
   )
 }
