@@ -1,0 +1,78 @@
+[
+  {
+    "id": "1",
+    "name": "Atlas Design System",
+    "description": "A unified component library that helps product teams ship consistent, accessible experiences.",
+    "status": "active",
+    "category": "Design & engineering",
+    "owner": "Maya Chen",
+    "initials": "AC",
+    "color": "violet",
+    "progress": 72,
+    "dueDate": "Nov 18, 2026",
+    "team": ["Maya Chen", "Leo Martin", "Nina Patel"],
+    "tasks": [
+      { "title": "Audit existing components", "done": true },
+      { "title": "Publish token documentation", "done": true },
+      { "title": "Ship accessible form patterns", "done": false },
+      { "title": "Run adoption workshop", "done": false }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Customer Portal",
+    "description": "A self-service workspace for customers to manage accounts, subscriptions, and support.",
+    "status": "active",
+    "category": "Web application",
+    "owner": "Jordan Lee",
+    "initials": "CP",
+    "color": "blue",
+    "progress": 48,
+    "dueDate": "Dec 02, 2026",
+    "team": ["Jordan Lee", "Ava Brooks", "Sam Rivera"],
+    "tasks": [
+      { "title": "Map customer journeys", "done": true },
+      { "title": "Build account overview", "done": false },
+      { "title": "Connect billing APIs", "done": false },
+      { "title": "Usability testing", "done": false }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Insight Analytics",
+    "description": "An approachable analytics dashboard that turns product data into clear decisions.",
+    "status": "completed",
+    "category": "Data & analytics",
+    "owner": "Priya Shah",
+    "initials": "IA",
+    "color": "mint",
+    "progress": 100,
+    "dueDate": "Oct 10, 2026",
+    "team": ["Priya Shah", "Noah Kim", "Emma Wilson"],
+    "tasks": [
+      { "title": "Define event taxonomy", "done": true },
+      { "title": "Create reporting views", "done": true },
+      { "title": "Validate data quality", "done": true },
+      { "title": "Launch to all teams", "done": true }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Mobile Onboarding",
+    "description": "A friendlier first-run experience that gets new users to value in less time.",
+    "status": "planning",
+    "category": "Mobile experience",
+    "owner": "Alex Morgan",
+    "initials": "MO",
+    "color": "orange",
+    "progress": 18,
+    "dueDate": "Jan 15, 2027",
+    "team": ["Alex Morgan", "Kai Thompson", "Zoe Park"],
+    "tasks": [
+      { "title": "Review onboarding funnel", "done": true },
+      { "title": "Prototype welcome flow", "done": false },
+      { "title": "Write in-app guidance", "done": false },
+      { "title": "Prepare beta release", "done": false }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Analytics" };
+
+export default function AnalyticsPage() {
+  return <section className="mx-auto max-w-[950px]"><p className="mb-2 text-[10px] font-bold tracking-[1.3px] text-accent">THE BIG PICTURE</p><h1 className="font-display text-[27px] font-bold tracking-tight">Analytics</h1><p className="mb-7 mt-2 text-xs text-muted">A clear view of how work is moving across your projects.</p>
+    <div className="mt-5 grid gap-4 md:grid-cols-[1.3fr_1fr]"><article className="rounded-xl border border-line bg-surface p-5"><span className="text-[10px] text-muted">PROJECT DELIVERY</span><strong className="my-4 block font-display text-3xl font-bold">86%</strong><p className="text-[10px] text-muted">Projects on track this quarter</p><div className="flex h-[140px] items-end gap-2 border-b border-line pt-4">{[40, 58, 51, 74, 67, 86, 78, 93, 71, 85, 97, 88].map((height, index) => <i className={`flex-1 rounded-t bg-violet-200 ${index % 4 === 3 || index === 11 ? "bg-accent" : ""}`} key={index} style={{ height: `${height}%` }} />)}</div><div className="mt-2 flex justify-between text-[8px] text-muted"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div></article>
+      <article className="rounded-xl border border-line bg-surface p-5"><span className="text-[10px] text-muted">TEAM CAPACITY</span><strong className="my-4 block font-display text-3xl font-bold">78%</strong><p className="text-[10px] text-muted">Average team bandwidth</p><div className="my-6 h-3 overflow-hidden rounded-lg bg-surface-soft"><span className="block h-full w-[78%] rounded-full bg-gradient-to-r from-violet-600 via-blue-400 to-orange-300" /></div><div className="grid gap-3 text-[9px] text-muted"><span><i className="mr-2 inline-block size-2 rounded-full bg-violet-600" />Product 82%</span><span><i className="mr-2 inline-block size-2 rounded-full bg-blue-400" />Engineering 74%</span><span><i className="mr-2 inline-block size-2 rounded-full bg-orange-300" />Design 68%</span></div></article></div>
+  </section>;
+}

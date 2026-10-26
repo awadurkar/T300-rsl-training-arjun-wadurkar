@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Team" };
+const people = [{ name: "Maya Chen", role: "Product design", initials: "MC", color: "bg-rose-100 text-rose-700" }, { name: "Jordan Lee", role: "Product management", initials: "JL", color: "bg-blue-100 text-blue-700" }, { name: "Priya Shah", role: "Data & analytics", initials: "PS", color: "bg-purple-100 text-purple-700" }, { name: "Alex Morgan", role: "Engineering", initials: "AM", color: "bg-emerald-100 text-emerald-700" }, { name: "Leo Martin", role: "Design systems", initials: "LM", color: "bg-orange-100 text-orange-700" }, { name: "Nina Patel", role: "Frontend engineering", initials: "NP", color: "bg-pink-100 text-pink-700" }];
+
+export default function TeamPage() {
+  return <section className="mx-auto max-w-[950px]"><p className="mb-2 text-[10px] font-bold tracking-[1.3px] text-accent">GOOD PEOPLE, GOOD WORK</p><h1 className="font-display text-[27px] font-bold tracking-tight">Your team</h1><p className="mb-7 mt-2 text-xs text-muted">Meet the folks making great things happen.</p><div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-3">{people.map((person) => <article className="flex flex-col items-center rounded-xl border border-line bg-surface px-3 py-5" key={person.name}><span className={`mb-3 grid size-[43px] place-items-center rounded-full text-[11px] font-bold ${person.color}`}>{person.initials}</span><strong className="text-[10px]">{person.name}</strong><small className="mt-1 text-[9px] text-muted">{person.role}</small><span className="mt-3 text-[8px] text-emerald-700 before:mr-1 before:inline-block before:size-1.5 before:rounded-full before:bg-emerald-400 before:content-['']">Available</span></article>)}</div></section>;
+}
