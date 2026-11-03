@@ -2,8 +2,8 @@ import { ComponentLibraryDemo } from "./exercise-2-library/ComponentLibraryDemo"
 import { ProductDashboard } from "./exercise-1-dashboard/ProductDashboard";
 
 const navigation = [
-  { href: "#dashboard", label: "Dashboard" },
-  { href: "#component-library", label: "Component library" },
+  { href: "#dashboard", label: "EXERCISE 1: Dashboard" },
+  { href: "#component-library", label: "EXERCISE 2: Component library" },
 ];
 
 export default function App() {

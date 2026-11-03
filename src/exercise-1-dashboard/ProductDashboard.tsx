@@ -16,17 +16,6 @@ export function ProductDashboard() {
             A simple overview of your products and stock.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() =>
-            document
-              .getElementById("component-library")
-              ?.scrollIntoView({ behavior: "smooth" })
-          }
-          className="inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
-        >
-          View component library
-        </button>
       </header>
 
       <div className="mb-4 flex items-center justify-between">
