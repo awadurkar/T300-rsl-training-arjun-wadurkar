@@ -5,9 +5,7 @@ import {
   Check,
   CheckCircle2,
   CircleHelp,
-  FileCheck2,
   LoaderCircle,
-  ShieldCheck,
 } from "lucide-react";
 import {
   FormProvider,
@@ -261,46 +259,49 @@ function App() {
           <Stepper currentStep={currentStep} />
 
           <FormProvider {...methods}>
-            <form
-              className="form-card"
-              noValidate
-              onSubmit={(event) => {
-                event.preventDefault();
-                if (currentStep === steps.length - 1) {
-                  void handleSubmit(onValid, onInvalid)(event);
-                } else {
-                  void goToStep(currentStep + 1);
-                }
-              }}
-            >
-              {currentStep === 0 && <PersonalStep />}
-              {currentStep === 1 && <EducationStep />}
-              {currentStep === 2 && <ExperienceStep />}
-              {currentStep === 3 && <ApplicationStep />}
-              {currentStep === 4 && (
-                <>
+            <div className="form-card">
+              {currentStep === steps.length - 1 ? (
+                <form
+                  id="application-form"
+                  noValidate
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    void handleSubmit(onValid, onInvalid)();
+                  }}
+                >
                   <ReviewStep onEditStep={setCurrentStep} />
-                  <div className="scenario-control">
-                    <label className="field-label" htmlFor="demo-scenario">
-                      Submission response
-                    </label>
-                    <select
-                      id="demo-scenario"
-                      className="field-control field-select"
-                      value={scenario}
-                      onChange={(event) =>
-                        setScenario(event.target.value as MockApiScenario)
-                      }
-                    >
-                      <option value="success">Success</option>
-                      <option value="validation">Server field validation error</option>
-                      <option value="server-error">Server failure</option>
-                    </select>
-                    <span className="field-hint">
-                      Demo control for trying each mock API response.
-                    </span>
-                  </div>
-                </>
+                </form>
+              ) : (
+                <div>
+                  {currentStep === 0 && <PersonalStep />}
+                  {currentStep === 1 && <EducationStep />}
+                  {currentStep === 2 && <ExperienceStep />}
+                  {currentStep === 3 && <ApplicationStep />}
+                </div>
+              )}
+
+              {currentStep === steps.length - 1 && (
+                <div className="scenario-control">
+                  <label className="field-label" htmlFor="demo-scenario">
+                    Mock server response
+                  </label>
+                  <select
+                    id="demo-scenario"
+                    className="field-control field-select"
+                    value={scenario}
+                    onChange={(event) =>
+                      setScenario(event.target.value as MockApiScenario)
+                    }
+                    disabled={methods.formState.isSubmitting}
+                  >
+                    <option value="success">Success</option>
+                    <option value="validation">Server field validation error</option>
+                    <option value="server-error">Server failure</option>
+                  </select>
+                  <span className="field-hint">
+                    Choose the response to test, then submit your application.
+                  </span>
+                </div>
               )}
 
               {serverError && (
@@ -356,9 +357,12 @@ function App() {
                     </button>
                   ) : (
                     <button
-                      type="submit"
+                      type="button"
                       className="primary-button"
                       disabled={methods.formState.isSubmitting}
+                      onClick={() =>
+                        void handleSubmit(onValid, onInvalid)()
+                      }
                     >
                       {methods.formState.isSubmitting ? (
                         <>
@@ -379,7 +383,7 @@ function App() {
                   )}
                 </div>
               </div>
-            </form>
+            </div>
           </FormProvider>
 
           <p className="form-footnote">
