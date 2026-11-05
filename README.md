@@ -50,18 +50,3 @@ Re-rendering is kept local in several places:
 Validation errors are linked to controls, announced with `role="alert"`, and
 invalid fields are focused on step validation and server-side field failure.
 The wizard can be completed using the keyboard.
-
-# Summary
-Implements a responsive, keyboard-accessible job application flow with five steps: personal details, education, experience, application details, and review.
-
-- Adds a Zod schema as the source of validation rules and inferred TypeScript types, including age, employment-date, and future joining-date checks.
-- Uses one React Hook Form instance with step-by-step validation and preserved values when navigating between steps.
-- Adds reusable field components and `useFieldArray` support for education and previous companies.
-- Models fresher and experienced candidates as a discriminated union.
-- Implements a 1.5-second mock API with distinct success, server validation, and server failure outcomes.
-
-# Verification
-- `npm run dev` 
-- Browser-checked both experience paths, validation and correction, server failure, and successful submission.
-
-# Denomstration
