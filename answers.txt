@@ -1,0 +1,23 @@
+Finding 1: location.hash - Untrusted URL Data
+The fragment is controlled by the user and must be treated as untrusted input.
+
+Finding 2: innerHTML - DOM-Based Cross-Site Scripting (DOM XSS)
+Assigning the fragment to innerHTML parses it as markup and may execute attacker-supplied HTML or script-capable event handlers. Use textContent or create text nodes instead.
+
+Finding 3: localStorage - Untrusted Persistent Client-Side Data
+Users and same-origin scripts can modify localStorage. Parsed configuration must not be treated as trusted or authoritative.
+
+Finding 4: Object.assign - Prototype Pollution / Unsafe Object Merge
+Merging attacker-controlled JSON into an ordinary object can allow special keys such as __proto__ to affect object prototypes. Validate an explicit schema and copy only allowed fields.
+
+Finding 5: JSON.parse - Unvalidated Serialized Input
+Stored data may be malformed or have unexpected types and properties. Handle parse failures and validate the resulting structure and each value before use.
+
+Finding 6: getUser() - Untrusted API Response / Trust Boundary
+Data returned by an API is not automatically safe just because it comes from the application's server. Validate its schema and treat user-controlled fields as text.
+
+Finding 7: renderClient({ user }) - Sensitive Data Exposure
+Passing a complete user object to client rendering can expose secrets such as access tokens in the browser. Return only the public fields the UI needs.
+
+Finding 8: renderClient({ user }) - Potential DOM Injection
+If renderClient inserts user-controlled fields using HTML parsing sinks, those fields can cause DOM XSS. Render values through safe text APIs.
